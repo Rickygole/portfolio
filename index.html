@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ricky Gole | ML Evaluation &amp; Robustness</title>
+<meta name="description" content="I find the failure modes ML systems hide after deployment. Clinical NLP, LLM evaluation, dialect robustness. Graduating December 2026, available full-time January 2027.">
+<meta name="author" content="Ricky Gole">
+<link rel="canonical" href="https://rickygole.github.io/portfolio/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ricky Gole | ML Evaluation &amp; Robustness">
+<meta property="og:description" content="I find the failure modes ML systems hide after deployment. Available full-time January 2027.">
+<meta property="og:url" content="https://rickygole.github.io/portfolio/">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📉</text></svg>">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ricky Gole",
+  "email": "rickygole32@gmail.com",
+  "url": "https://rickygole.github.io/portfolio/",
+  "jobTitle": "Graduate Researcher, Machine Learning Evaluation",
+  "affiliation": { "@type": "CollegeOrUniversity", "name": "Morgan State University" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Caldwell University" },
+  "sameAs": [
+    "https://github.com/rickygole",
+    "https://www.linkedin.com/in/ricky-gole-69178419b/",
+    "https://scholar.google.com/citations?user=iSRJouQAAAAJ&hl=en"
+  ],
+  "knowsAbout": ["Machine Learning Evaluation","Clinical NLP","Large Language Models","Reinforcement Learning","Model Robustness","Distribution Shift"]
+}
+</script>
+
+<style>
+:root{
+  --bg:#ffffff; --bg-2:#f6f7f9; --bg-3:#eef0f4;
+  --fg:#12151a; --fg-2:#454c58; --fg-3:#5f6676;
+  --line:#e0e3e9; --line-2:#cdd2dc;
+  --accent:#1c51d6; --accent-fg:#ffffff; --accent-soft:#eaf0ff;
+  --ok:#0f6b3f; --ok-soft:#e7f6ee;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  --maxw:940px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0d1016; --bg-2:#141922; --bg-3:#1b212c;
+    --fg:#eef1f6; --fg-2:#b3bbc9; --fg-3:#818b9c;
+    --line:#242b37; --line-2:#333c4b;
+    --accent:#7aa2ff; --accent-fg:#0d1016; --accent-soft:#16203a;
+    --ok:#63d29a; --ok-soft:#10261c;
+  }
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent); text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:3px}
+
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;z-index:99;background:var(--accent);color:var(--accent-fg);padding:10px 16px;border-radius:8px}
+
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+section{padding:56px 0; border-top:1px solid var(--line)}
+
+h1,h2,h3{line-height:1.2; margin:0}
+h2{
+  font-size:.78rem; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--fg-3); font-weight:650; margin-bottom:10px;
+  font-family:var(--mono);
+}
+.sub{color:var(--fg-3); font-size:.9rem; margin:0 0 26px; max-width:62ch}
+
+/* hero */
+.hero{padding:68px 0 52px}
+.eyebrow{font-family:var(--mono); font-size:.8rem; color:var(--fg-3); margin-bottom:16px}
+.hero h1{
+  font-size:clamp(1.95rem,5vw,3.05rem); font-weight:700; letter-spacing:-.025em;
+  margin-bottom:18px; max-width:21ch;
+}
+.hero .lede{
+  font-size:clamp(1.02rem,2vw,1.18rem); color:var(--fg-2);
+  max-width:64ch; margin-bottom:24px;
+}
+.hero .lede strong{color:var(--fg); font-weight:600}
+
+.status{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px}
+.pill{
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:.82rem; font-weight:550; padding:6px 13px; border-radius:999px;
+  border:1px solid var(--line-2); color:var(--fg-2); background:var(--bg-2);
+}
+.pill.go{background:var(--ok-soft); color:var(--ok); border-color:transparent}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+
+.links{display:flex; flex-wrap:wrap; gap:10px}
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 18px; border-radius:9px; font-size:.92rem; font-weight:560;
+  border:1px solid var(--line-2); color:var(--fg); background:var(--bg-2);
+  transition:border-color .15s, background .15s;
+}
+.btn:hover{text-decoration:none; border-color:var(--accent); background:var(--accent-soft)}
+.btn.primary{background:var(--accent); color:var(--accent-fg); border-color:var(--accent)}
+.btn.primary:hover{opacity:.9; background:var(--accent)}
+
+/* cards */
+.grid{display:grid; gap:18px}
+@media(min-width:760px){ .grid.two{grid-template-columns:1fr 1fr} }
+@media(min-width:700px){ .grid.three{grid-template-columns:repeat(3,1fr)} }
+
+.card{
+  border:1px solid var(--line); border-radius:13px; padding:24px;
+  background:var(--bg-2); display:flex; flex-direction:column;
+}
+.card .tag{
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--fg-3); margin-bottom:12px;
+}
+.card h3{font-size:1.1rem; font-weight:650; margin-bottom:10px; letter-spacing:-.01em}
+.stat{
+  font-family:var(--mono); font-size:clamp(1.6rem,3.8vw,2.2rem); font-weight:700;
+  color:var(--accent); letter-spacing:-.03em; line-height:1.1; margin:6px 0 4px;
+}
+.stat-cap{font-size:.85rem; color:var(--fg-3); margin-bottom:14px}
+.card p{margin:0 0 14px; color:var(--fg-2); font-size:.94rem}
+.card .meta{
+  margin-top:auto; padding-top:14px; border-top:1px solid var(--line);
+  font-size:.82rem; color:var(--fg-3); font-family:var(--mono);
+  display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap;
+}
+.repo{
+  font-family:var(--mono); font-size:.78rem; font-weight:600;
+  padding:4px 10px; border-radius:6px; background:var(--bg-3);
+  border:1px solid var(--line-2); color:var(--accent); white-space:nowrap;
+}
+.repo:hover{text-decoration:none; border-color:var(--accent)}
+
+/* shipped */
+.ship{
+  border:1px solid var(--line); border-radius:11px; padding:18px 20px;
+  background:var(--bg-2);
+}
+.ship h3{font-size:.96rem; font-weight:640; margin-bottom:7px}
+.ship h3 a{color:var(--fg)}
+.ship p{margin:0 0 10px; font-size:.88rem; color:var(--fg-2)}
+.ship .lang{font-family:var(--mono); font-size:.74rem; color:var(--fg-3)}
+
+/* publications */
+.pubgroup{margin-bottom:30px}
+.pubgroup:last-child{margin-bottom:0}
+.pubgroup h3{
+  font-size:.9rem; font-weight:650; margin-bottom:14px; color:var(--fg-2);
+  display:flex; align-items:center; gap:10px;
+}
+.count{
+  font-family:var(--mono); font-size:.72rem; font-weight:600;
+  padding:2px 8px; border-radius:5px; background:var(--bg-3); color:var(--fg-3);
+}
+.pub{display:flex; gap:16px; padding:13px 0; border-bottom:1px solid var(--line); align-items:baseline}
+.pub:last-child{border-bottom:none}
+.pub .venue{
+  font-family:var(--mono); font-size:.76rem; font-weight:600;
+  color:var(--fg-3); flex:none; width:136px; padding-top:2px;
+}
+.pub .title{font-size:.95rem; color:var(--fg); margin:0}
+.pub .note{font-size:.8rem; color:var(--fg-3); display:block; margin-top:3px}
+@media(max-width:620px){ .pub{flex-direction:column; gap:5px} .pub .venue{width:auto} }
+
+/* skills */
+.skills{display:grid; gap:22px}
+@media(min-width:700px){ .skills{grid-template-columns:1fr 1fr} }
+.skillrow h3{
+  font-size:.82rem; font-weight:650; color:var(--fg-2); margin-bottom:10px;
+  font-family:var(--mono); letter-spacing:.04em;
+}
+.chips{display:flex; flex-wrap:wrap; gap:7px}
+.chip{
+  font-size:.83rem; padding:5px 11px; border-radius:7px;
+  background:var(--bg-2); border:1px solid var(--line); color:var(--fg-2);
+}
+
+/* experience */
+.exp{display:flex; gap:18px; padding:16px 0; border-bottom:1px solid var(--line)}
+.exp:last-child{border-bottom:none}
+.exp .when{font-family:var(--mono); font-size:.78rem; color:var(--fg-3); flex:none; width:136px; padding-top:3px}
+.exp h3{font-size:.98rem; font-weight:620; margin-bottom:4px}
+.exp p{margin:0; font-size:.9rem; color:var(--fg-2)}
+@media(max-width:620px){ .exp{flex-direction:column; gap:5px} .exp .when{width:auto} }
+
+.contact{background:var(--bg-2); border:1px solid var(--line); border-radius:14px; padding:34px; text-align:center}
+.contact h2{margin-bottom:12px}
+.contact p{color:var(--fg-2); max-width:54ch; margin:0 auto 22px}
+
+footer{
+  padding:30px 0 44px; border-top:1px solid var(--line);
+  font-size:.83rem; color:var(--fg-3);
+  display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="wrap">
+
+<header class="hero" id="top">
+  <div class="eyebrow">Ricky Gole · Baltimore, MD</div>
+  <h1>I find the failure modes ML systems hide after deployment.</h1>
+  <p class="lede">
+    Graduate researcher in Advanced Computing at Morgan State (<strong>4.0 GPA</strong>),
+    working on evaluation and robustness of LLM and clinical ML systems. My work is about
+    the gap between benchmark accuracy and behavior under real distribution shift, and
+    about building the audits that close it. PyTorch, LLM fine-tuning, benchmark design.
+  </p>
+
+  <div class="status">
+    <span class="pill go"><span class="dot"></span>Graduating December 2026 · available full-time January 2027</span>
+    <span class="pill">Authorized to work in the US</span>
+    <span class="pill">Remote or relocation</span>
+  </div>
+
+  <nav class="links" aria-label="Profiles and contact">
+    <a class="btn primary" href="mailto:rickygole32@gmail.com">rickygole32@gmail.com</a>
+    <a class="btn" href="https://github.com/rickygole" rel="noopener">GitHub</a>
+    <a class="btn" href="https://scholar.google.com/citations?user=iSRJouQAAAAJ&amp;hl=en" rel="noopener">Google Scholar</a>
+    <a class="btn" href="https://www.linkedin.com/in/ricky-gole-69178419b/" rel="noopener">LinkedIn</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<section id="findings">
+  <h2>Selected findings</h2>
+  <p class="sub">Each one is a failure nobody was measuring, with a fix attached and, where the code is public, a repo you can run.</p>
+
+  <div class="grid two">
+
+    <article class="card">
+      <div class="tag">Temporal OOD audit · clinical NLP</div>
+      <h3>A model that scores 0.73, then zero</h3>
+      <div class="stat">0.73 &rarr; 0.00</div>
+      <div class="stat-cap">BiomedBERT F1 on post-2019 FDA drug interactions</div>
+      <p>
+        A drug interaction classifier holding 0.7273 F1 in distribution collapsed to
+        <strong>exactly zero</strong> on a 600-pair post-2019 out-of-distribution set,
+        reproduced across four seeds. It did not degrade. It flatlined. A name-only
+        in-distribution control reproduced the same 0.0000, which pins the cause on
+        structural dependence on annotated sentence context, not drug novelty. I recovered
+        0.2640 F1 with KnowledgeRAG-DDI, a hybrid BM25 and FAISS retrieval probe over FDA
+        labels with leakage-controlled indexing and reciprocal rank fusion.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="tag">IEEE ICDM 2026 · accepted</div>
+      <h3>Five models, wrong in unison</h3>
+      <div class="stat">19.9&times;</div>
+      <div class="stat-cap">more unanimous-wrong answers than chance predicts</div>
+      <p>
+        Across 4,089 USMLE and MedMCQA questions, five models (Llama-3-8B, Qwen-2.5-7B,
+        Gemma-3n, GPT-4o, DeepSeek-V3) agreed on a <em>wrong</em> answer 24.6% of the time
+        against a 1.23% chance baseline. A distractor shuffle isolated the cause as content
+        driven, not positional. The resulting parameter-free routing rule flags these cases
+        at <strong>83.0 to 96.1% precision</strong> (96.1% on MedQA, 83.0% on MedMCQA) for
+        6.7 to 8.0% human review cost, holding 77.5% under a held-out frontier-model
+        substitution.
+      </p>
+      <div class="meta">
+        <span>Ensembles don't average out error. They concentrate it.</span>
+        <a class="repo" href="https://github.com/rickygole/llm-convergent-failures" rel="noopener">llm-convergent-failures</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="tag">Fairness benchmark · under review, EMNLP</div>
+      <h3>DART: dialect robustness in essay scoring</h3>
+      <div class="stat">480 pairs</div>
+      <div class="stat-cap">six U.S. English dialect families, plus 160 controls</div>
+      <p>
+        A controlled benchmark validated by a three-gate pipeline (length drift,
+        DeBERTa-v3 NLI entailment, regex feature presence) at a 92.71% pass rate.
+        Mixed-effects regression exposed directional bias against African American English
+        in a fine-tuned scorer (Pearson r = 0.829, QWK = 0.714) as the only family with
+        significant negative drift (&beta; = &minus;0.029, p &lt; 0.001), concentrated at
+        the equalised-odds decision threshold. Chain-of-thought scaffolding
+        <em>amplified</em> the drift across three LLM judges rather than reducing it.
+      </p>
+
+    </article>
+
+    <article class="card">
+      <div class="tag">Multi-omic fusion · real patient cohort</div>
+      <h3>SGOF: when more data makes it worse</h3>
+      <div class="stat">&minus;0.149 &rarr; 0.012</div>
+      <div class="stat-cap">AUROC drop under an adversarial modality: MOGONET vs. SGOF</div>
+      <p>
+        On a real <strong>111-patient</strong> antidepressant response cohort, adding an
+        uninformative 258,782-SNP genotype layer dragged four fusion families below the best
+        single modality (methylation alone, AUROC 0.692), collapsing naive concatenation to
+        0.334. I attributed it to uninformativeness with a synthetic noise control, then
+        built Signal-Gated Omic Fusion, which weights modalities by held-out validation
+        signal and held at 0.664 (paired-bootstrap change 0.012, 95% CI
+        [&minus;0.035, 0.059], not significant) where MOGONET dropped 0.149. The claim is
+        stability under a bad modality, not beating the best single one.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<section id="shipped">
+  <h2>Shipped</h2>
+  <p class="sub">Working software, not only papers. Everything here is public and runnable.</p>
+
+  <div class="grid three">
+    <div class="ship">
+      <h3><a href="https://github.com/rickygole/overturn" rel="noopener">overturn</a></h3>
+      <p>An agent fleet that drafts and tracks health insurance denial appeals across a multi-week lifecycle.</p>
+      <span class="lang">Python</span>
+    </div>
+    <div class="ship">
+      <h3><a href="https://github.com/rickygole/Bias-Lab" rel="noopener">Bias-Lab</a></h3>
+      <p>An interactive lab where students train a classifier in the browser, drag one threshold, and watch who absorbs the error.</p>
+      <span class="lang">JavaScript</span>
+    </div>
+    <div class="ship">
+      <h3><a href="https://github.com/rickygole/k2l-readaloud" rel="noopener">k2l-readaloud</a></h3>
+      <p>Browser-only oral reading fluency assessor. Local Whisper plus a Needleman-Wunsch running record.</p>
+      <span class="lang">JavaScript</span>
+    </div>
+    <div class="ship">
+      <h3><a href="https://github.com/rickygole/semantic-gap-educational-rag" rel="noopener">semantic-gap-educational-rag</a></h3>
+      <p>Code for the EDM 2026 paper on behavioral embeddings and why linear methods fail for educational RAG.</p>
+      <span class="lang">Python</span>
+    </div>
+    <div class="ship">
+      <h3><a href="https://github.com/rickygole/sesame-robot" rel="noopener">sesame-robot</a></h3>
+      <p>Custom ESP32-WROOM firmware for a quadruped robot. IK gaits, closed-loop sensing, LLM-driven behavior.</p>
+      <span class="lang">C++</span>
+    </div>
+    <div class="ship">
+      <h3><a href="https://github.com/rickygole/AItailoring" rel="noopener">AItailoring</a></h3>
+      <p>In-browser AI resume tailor and ATS optimizer powered by WebLLM. Runs entirely client side.</p>
+      <span class="lang">JavaScript</span>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <h2>Publications</h2>
+
+  <div class="pubgroup">
+    <h3>Accepted and published <span class="count">5</span></h3>
+    <div class="pub">
+      <span class="venue">IEEE ICDM 2026</span>
+      <p class="title">Detecting and Mitigating Convergent Failures in Clinical LLM Ensembles
+      <span class="note">Gole, R., et al. First author · <a href="https://github.com/rickygole/llm-convergent-failures" rel="noopener">code (llm-convergent-failures)</a></span></p>
+    </div>
+    <div class="pub">
+      <span class="venue">ACM L@S 2026</span>
+      <p class="title">Prescriptive Persistence: Quantifying the Breakdown in Human-AI Pedagogical Co-Regulation in ELL Writing Feedback
+      <span class="note">Gole, R., et al. First author</span></p>
+    </div>
+    <div class="pub">
+      <span class="venue">EDM 2026</span>
+      <p class="title">The Semantic Gap in Behavioral Embeddings: Why Linear Methods Fail for Educational RAG in Mathematics
+      <span class="note">Gole, R., Dacon, J. First author · <a href="https://github.com/rickygole/semantic-gap-educational-rag" rel="noopener">code (semantic-gap-educational-rag)</a></span></p>
+    </div>
+    <div class="pub">
+      <span class="venue">Cloud Summit 2026</span>
+      <p class="title">Mitigating Confused Deputy Attacks in AWS Cross-Account IAM Roles Through ExternalId Enforcement
+      <span class="note">Gole, R., Heydari, V. First author</span></p>
+    </div>
+    <div class="pub">
+      <span class="venue">IEEE BIBM 2025</span>
+      <p class="title">BIO-DQNA: Meta-Learning and Contrastive Reinforcement Learning for Personalized Comorbidity Management in Type 1 Diabetes and Hypertension
+      <span class="note">Dacon, J., Gole, R., et al. Second author</span></p>
+    </div>
+  </div>
+
+  <div class="pubgroup">
+    <h3>In submission <span class="count">2</span></h3>
+    <div class="pub">
+      <span class="venue">Manuscript</span>
+      <p class="title">DART: A Controlled Benchmark for Dialect Robustness in Automated Essay Scoring</p>
+    </div>
+    <div class="pub">
+      <span class="venue">Manuscript</span>
+      <p class="title">Beyond the Benchmark: Diagnosing Knowledge Tracing Evaluation Under Distribution Shift</p>
+    </div>
+  </div>
+
+  <div class="pubgroup">
+    <h3>Additional peer-reviewed work <span class="count">4</span></h3>
+    <div class="pub">
+      <span class="venue">JISE 2026</span>
+      <p class="title">Understanding AI Literacy Among College Students: Voices from a Historically Black College and University
+      <span class="note">Journal of Interdisciplinary Studies in Education</span></p>
+    </div>
+    <div class="pub">
+      <span class="venue">AJSE 2026</span>
+      <p class="title">Cybersecurity and International Collaboration in STEM: The Role of Global Partnerships in Protecting Digital Infrastructures and Data
+      <span class="note">American Journal of STEM Education</span></p>
+    </div>
+    <div class="pub">
+      <span class="venue">2026</span>
+      <p class="title">Bridging the Digital Divide: Evaluating the Impact of Digital Literacy Training for School Students in Baltimore's Underserved Communities</p>
+    </div>
+    <div class="pub">
+      <span class="venue">2026</span>
+      <p class="title">Trapped-Ion Qubits: Architecture, Implementation, and the Road to Fault-Tolerant Quantum Computing</p>
+    </div>
+  </div>
+
+  <p class="sub" style="margin-top:26px">
+    Full record and citation counts on
+    <a href="https://scholar.google.com/citations?user=iSRJouQAAAAJ&amp;hl=en" rel="noopener">Google Scholar</a>.
+  </p>
+</section>
+
+<section id="more">
+  <h2>Also on the bench</h2>
+  <div class="grid two">
+    <article class="card">
+      <div class="tag">Benchmark validity</div>
+      <h3>35.7% of a deep model's edge, from two features</h3>
+      <p>
+        Across <strong>95.3M EdNet interactions</strong>, a two-feature baseline recovered
+        35.7% of Deep Knowledge Tracing's above-chance AUC, a construct-validity confound.
+        I introduced the recovery ratio as a reusable diagnostic, with calibration reporting
+        (Brier, ECE, log-loss) and multi-seed stability checks.
+      </p>
+      <div class="meta"><span>If a trivial baseline gets a third of your gain, the metric is the problem.</span></div>
+    </article>
+    <article class="card">
+      <div class="tag">Safety-constrained RL · BIO-DQNA, second author</div>
+      <h3>Unsafe actions, 12% to 2%</h3>
+      <p>
+        Clinically tiered reward functions on a custom PyTorch environment raised policy
+        success to <strong>94%</strong> while cutting the unsafe-action rate from 12% to 2%.
+        Benchmarked six DQN variants (Standard, Double, Dueling, Categorical, Noisy,
+        Rainbow) at 100 seeds each with GPU hyperparameter sweeps. Published at IEEE BIBM
+        2025 with J. Dacon as first author.
+      </p>
+    </article>
+    <article class="card">
+      <div class="tag">LLM evaluation</div>
+      <h3>Over-correction, 42.9% to 6.6%</h3>
+      <p>
+        Quantified AI and human pedagogical divergence across <strong>12,979 ELL
+        sentences</strong> and introduced the Prescriptive Gap metric (t = 103.19,
+        p &lt; 0.001, d = 0.91). A controlled frugal-prompt intervention cut GPT-5.2
+        over-correction from 42.9% to 6.6%.
+      </p>
+    </article>
+    <article class="card">
+      <div class="tag">Cloud security</div>
+      <h3>Closing the confused deputy</h3>
+      <p>
+        Blocked cross-account confused-deputy attacks across six scenarios using paired IAM
+        trust policies (ExternalId, SourceAccount, role enumeration), and processed
+        <strong>1M audit-log events</strong> through an entropy-based anomaly detection
+        pipeline over STS AssumeRole requests.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Toolkit</h2>
+  <div class="skills">
+    <div class="skillrow">
+      <h3>Machine learning</h3>
+      <div class="chips">
+        <span class="chip">LLM fine-tuning (DPO, LoRA)</span><span class="chip">RAG</span>
+        <span class="chip">Transformers</span><span class="chip">Reinforcement learning</span>
+        <span class="chip">Rainbow / Dueling DQN</span><span class="chip">Contrastive learning</span>
+        <span class="chip">Meta-learning</span><span class="chip">NLP</span>
+      </div>
+    </div>
+    <div class="skillrow">
+      <h3>Evaluation and methods</h3>
+      <div class="chips">
+        <span class="chip">Benchmark design</span><span class="chip">Distribution-shift audits</span>
+        <span class="chip">Ablation studies</span><span class="chip">Bootstrap CIs</span>
+        <span class="chip">Mixed-effects regression</span><span class="chip">Calibration (Brier, ECE)</span>
+        <span class="chip">Hyperparameter sweeps</span><span class="chip">Multi-seed stability</span>
+      </div>
+    </div>
+    <div class="skillrow">
+      <h3>Engineering</h3>
+      <div class="chips">
+        <span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">SQL</span>
+        <span class="chip">Java</span><span class="chip">C++</span>
+        <span class="chip">HuggingFace</span><span class="chip">scikit-learn</span>
+        <span class="chip">Pandas / NumPy</span>
+      </div>
+    </div>
+    <div class="skillrow">
+      <h3>Systems and data</h3>
+      <div class="chips">
+        <span class="chip">GPU training infra</span><span class="chip">Training pipelines</span>
+        <span class="chip">Hybrid retrieval (BM25, FAISS)</span><span class="chip">ETL</span>
+        <span class="chip">AWS (IAM, STS, CloudTrail)</span><span class="chip">Linux</span>
+        <span class="chip">Git</span><span class="chip">Jupyter</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <h2>Production systems and reliability</h2>
+  <p class="sub">Four years keeping other people's systems up, before and alongside the research.</p>
+
+  <div class="exp">
+    <span class="when">2022</span>
+    <div>
+      <h3>Level 2 Technology Consultant, TeamLogicIT</h3>
+      <p>Monitored 50+ enterprise networks in a SOC, cutting response time 30%. Deployed Sophos firewalls, Cisco Duo MFA, and Active Directory controls, reducing unauthorized access 35%. Documented SOX and SOC 2 findings.</p>
+    </div>
+  </div>
+  <div class="exp">
+    <span class="when">2019 to 2023</span>
+    <div>
+      <h3>Senior Student Technician, Caldwell University</h3>
+      <p>Sustained 99% uptime across VMware VDI, Linux, and Windows for 500+ users. Cut recurring tickets 20% by automating log analysis and health checks in Python.</p>
+    </div>
+  </div>
+  <div class="exp">
+    <span class="when">2025 to present</span>
+    <div>
+      <h3>Teaching Assistant, Morgan State University</h3>
+      <p>Supported 50+ students across operating systems and hardware courses. Lab instruction and debugging in Linux, Windows, and systems programming.</p>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <h2>Education</h2>
+  <div class="exp">
+    <span class="when">2025 to Dec 2026</span>
+    <div>
+      <h3>M.S. Advanced Computing, Morgan State University</h3>
+      <p>GPA 4.0/4.0. Graduate researcher. Deep cloud learning, cybersecurity, data science, network security, artificial intelligence.</p>
+    </div>
+  </div>
+  <div class="exp">
+    <span class="when">2019 to 2023</span>
+    <div>
+      <h3>B.S. Computer Information Systems and Financial Economics, Caldwell University</h3>
+      <p>GPA 3.55/4.0. Software engineering, statistics, operational management, data disaster recovery.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact">
+    <h2>Get in touch</h2>
+    <p>
+      If your team cares whether its models hold up in production, and not only whether
+      they win on a benchmark, I would like to talk.
+    </p>
+    <div class="links" style="justify-content:center">
+      <a class="btn primary" href="mailto:rickygole32@gmail.com">rickygole32@gmail.com</a>
+      <a class="btn" href="https://github.com/rickygole" rel="noopener">GitHub</a>
+      <a class="btn" href="https://scholar.google.com/citations?user=iSRJouQAAAAJ&amp;hl=en" rel="noopener">Google Scholar</a>
+      <a class="btn" href="https://www.linkedin.com/in/ricky-gole-69178419b/" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>&copy; <span id="yr">2026</span> Ricky Gole · Baltimore, MD</span>
+  <span><a href="#top">Back to top</a></span>
+</footer>
+
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
